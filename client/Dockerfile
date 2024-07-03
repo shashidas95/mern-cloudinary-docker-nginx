@@ -19,6 +19,9 @@ RUN npm run build
 # Stage-2
 FROM nginx:1.25.2-alpine-slim
 
+# Copy custom Nginx configuration files from local to the container
+COPY default.conf /etc/nginx/conf.d/default.conf
+
 # Copy static file to my nignx folder for serve static contain
 COPY --from=builder /app/build /usr/share/nginx/html
 
